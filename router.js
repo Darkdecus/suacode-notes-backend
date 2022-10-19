@@ -1,24 +1,8 @@
 const router = require("express").Router();
+const Note = require("./Notes/Note.controller");
 
-router
-  .route("/")
-  .get((req, res) => {
-    res.json({ msg: "working" });
-  })
-  .post((req, res) => {
-    res.send("working");
-  });
+router.route("/").get(Note.findAll).post(Note.create);
 
-router
-  .route(":id")
-  .get((req, res) => {
-    res.send("working");
-  })
-  .patch((req, res) => {
-    res.send("working");
-  })
-  .delete((req, res) => {
-    res.send("working");
-  });
+router.route(":id").patch(Note.update).delete(Note.delete);
 
 module.exports = router;
